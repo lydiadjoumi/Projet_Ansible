@@ -1,0 +1,7 @@
+---
+- name: Déploiement de l'application Web sur Docker
+  hosts: all
+  become: true
+
+  roles:
+    - webapp

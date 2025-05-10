@@ -1,0 +1,24 @@
+- name: Install some packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - epel-release
+    - wget
+    - yum-utils
+    - git
+    - python3-pip
+    - lvm2
+    - device-mapper-persistent-data
+
+- name: Add Docker repository
+  yum_repository:
+    name: docker
+    description: Docker repository
+    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+    enabled: yes
+    gpgcheck: no  # à modifier si tu gères les clés GPG proprement
+
+- name: Add Docker GPG key
+  rpm_key:
+    key: https://download.docker.com/linux/cent

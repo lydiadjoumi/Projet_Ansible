@@ -1,0 +1,22 @@
+# tasks file for webapp
+
+- include_tasks: "docker-centos.yml"
+  when: ansible_distribution == "CentOS"
+
+- include_tasks: "docker-ubuntu.yml"
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+
+- name: Copy template file
+  template:
+    src: index.html.j2
+    dest: "/tmp/index.html"
+
+- name: Start apache container
+  docker_container:
+    name: webapp
+    image: httpd:2.4
+    state: started
+    ports:
+      - "8080:80"
+    volumes:
+      - "/tmp/index.html:/usr/local/apache2/htdocs/index.html"
