@@ -5,3 +5,5 @@
 
   roles:
     - webapp
+
+  ansible_become_password: admin
