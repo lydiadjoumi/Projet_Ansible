@@ -1,4 +1,4 @@
-ansible_host: 10.1.48.6
+ansible_host: 10.1.49.6
 ansible_password: passwordtemp
 ansible_become_password: passwordtemp
 ansible_become: true
